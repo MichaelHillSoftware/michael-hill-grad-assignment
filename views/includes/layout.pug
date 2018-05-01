@@ -1,0 +1,13 @@
+include mixins
+
++doctype
++bootswatch("cyborg")
++nav({ 'Send': '#', Contact: "#" }, 'GrumpyGrams')
+    +dropdown('Dashboard')
+        if (user)
+            +list({Logout: '/users/logout'})
+            +dropdownDivider('Account')
+                +list({"Your Account": '/account', 'Your Orders': '/orders'})
+        else
+            +list({Login: '/users/login', Register: '/users/register'})
+block content

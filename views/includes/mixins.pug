@@ -1,0 +1,155 @@
+// Doctype mixin
+mixin doctype
+    doctype
+    html( lang="en" )
+        head
+            title GrumpyGrams
+            meta( charset='utf-8' )
+            meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+            meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+            meta( name='description', content='GrumpyGrams Web App' )
+        body(style="padding-bottom:10rem;")
+            .container
+            script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+            script( src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' )
+
+// Theme mixin
+mixin bootswatch(theme)
+    link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/" + theme + "/bootstrap.min.css", rel="stylesheet")
+
+// Navigation Mixins
+mixin nav(navMenu, heading)
+    nav.navbar.navbar-default(role='navigation')
+        div.navbar-header
+            button(type='button',data-toggle='collapse',data-target='#jcs-navbar-collapse-1').navbar-toggle
+                span.sr-only Toggle navigation
+                span.iconbar
+                span.iconbar
+                span.iconbar
+            a(href='/').navbar-brand #{heading}
+        div#jcs-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+                +list(navMenu)
+            block
+
+mixin dropdown(heading)
+    ul.nav.navbar-nav.navbar-right
+        li.dropdown
+            a(href='#',data-toggle='dropdown').dropdown-toggle #{heading}
+                b.caret
+            ul.dropdown-menu
+                block
+
+mixin list(list)
+    each href, key in list
+        if key == pagekey
+            li.active: a(href=href)= key
+        else
+            li
+                a(href=href)= key
+                block
+
+mixin dropdownDivider(heading)
+    li.divider
+        li.dropdown-header
+            big
+                font(color='black') #{heading}
+            block
+
+// Layout Mixins
+mixin center()
+    +newRow()
+        +newCol()
+        +newCol()
+            block
+
+mixin left()
+    +newRow()
+        +newCol()
+            block
+
+mixin right()
+    +newRow()
+        +newCol()
+        +newCol()
+        +newCol()
+            block
+
+mixin newRow()
+    .row
+        block
+
+mixin newCol()
+    .col-md-4.col-sm-6.col-xs-12
+        block
+
+// General Mixins
+mixin form(heading, uri)
+    +center()
+        +panel(heading)
+            center
+                h1 #{heading}
+            form(action=uri, method="POST")
+                block
+
+mixin panel(name)
+    div( class=["panel", "panel-primary"])
+        .panel-heading= name
+        .panel-body
+            block
+
+mixin textField(name, isDefaultValue, value)
+    div
+        .form-group
+            label.col-form-label(for=name) #{value}
+            if isDefaultValue == 'true'
+                input#name.form-control(type='text', name=name, value=value)
+            else
+                input#name.form-control(type='text', name=name, placeholder=value)
+
+mixin disabledField(value)
+    div
+        .form-group
+            fieldset(disabled='')
+                label.control-label(for='readOnlyInput') Build Light Secret
+                input#readOnlyInput.form-control(type='text', value=value, readOnly='')
+
+mixin deleteButton(text, uri)
+    +center()
+        form(action=uri, method="POST")
+            button.btn.btn-danger.btn-block(type='submit') #{text}
+
+mixin submitButton(text)
+    div
+        br
+        center
+            button.btn.btn-primary(type='submit') #{text}
+
+mixin link(link)
+    a(href=link)
+        block
+
+// Users Mixins
+mixin emailField(isDefaultValue, email)
+    div
+        .form-group
+            label.col-form-label(for='email') Email
+            if isDefaultValue == 'true'
+                input#email.form-control(type='email', name='email', value=email)
+            else
+                input#email.form-control(type='email', name='email', placeholder=email)
+
+mixin nicknameField(isDefaultValue, nickname)
+    div
+        .form-group
+            label.col-form-label(for='nickname') Nickname
+            if isDefaultValue == 'true'
+                input#nickname.form-control(type='text', name='nickname', value=nickname)
+            else
+                input#nickname.form-control(type='text', name='nickname', placeholder=nickname)
+
+mixin passwordField(fieldName)
+    div
+        .form-group
+            label.col-form-label(for='password') Password
+            input#fieldName.form-control(type='password', name=fieldName, placeholder='Password')

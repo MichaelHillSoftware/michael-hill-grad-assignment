@@ -1,0 +1,27 @@
+{
+  "name": "grumpy-grams",
+  "version": "1.0.0",
+  "description": "Web Application for GrumpyGrams",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/www",
+    "start-dev": "nodemon --inspect bin/www"
+  },
+  "author": "Michael Hill",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-jwt": "^5.3.1",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.2.0",
+    "jwt-express": "^1.1.0",
+    "mongoose": "^5.0.10",
+    "pug": "^2.0.1",
+    "serve-favicon": "^2.4.5",
+    "uuid": "^3.2.1"
+  }
+}

@@ -1,0 +1,7 @@
+extends ../includes/layout
+
+block content
+    +form('Login', "/users/login")
+        +emailField('false', 'Email')
+        +passwordField('password')
+        +submitButton('Login')

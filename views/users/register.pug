@@ -1,0 +1,9 @@
+extends ../includes/layout
+
+block content
+    +form('Register', "/users/register", flashMsg)
+        +emailField('false', 'Email')
+        +nicknameField('false', 'Nickname')
+        +passwordField('password')
+        +passwordField('repeatPassword')
+        +submitButton('Register')
